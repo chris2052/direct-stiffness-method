@@ -24,6 +24,7 @@ conn = [
     ];
 
 % u, w, phi
+% new comment
 GDof = 3*numNodes;
 
 numEl = size(conn, 1);
