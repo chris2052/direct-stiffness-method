@@ -7,16 +7,16 @@ EI = 20000;
 EA = 100*EI;
 
 %% node coordinates
-nodeCoor = [
+CoorNodes = [
     0, -4;
     3, 0;
     7, 0
     ];
 
-numNodes = size(nodeCoor, 1);
+numNodes = size(CoorNodes, 1);
 
-xx = nodeCoor(:, 1); 
-zz = nodeCoor(:, 2);
+xx = CoorNodes(:, 1); 
+zz = CoorNodes(:, 2);
 
 %% connectivity matrix
 conn = [
@@ -27,7 +27,7 @@ conn = [
 numEl = size(conn, 1);
 
 %% element type
-typeEl = ['ge2b', 'ge2a'];
+typeEl = ["ge2b"; "ge2a"];
 
 %% inzidenz matrix
 inz = [
@@ -38,10 +38,15 @@ inz = [
 %% deformation vector (global)
 D = [0, 0, 0, 1, 1, 1, 0, 0, 0];
 
+gDof = size(D, 2);
+
 %% load
 loadEl = zeros(numEl, 6);
 loadEl(1,:) = load_f(2.5, 2.5, 25, 5);
 loadEl(2,:) = load_q(0, 10, 4);
+forceNodes = [0];
 
-loadVec = zeros(GDof, 1);
+loadVec = zeros(gDof, 1);
 
+%% stiffness matrix
+stiffness = formStiffness(gDof, numEl, conn, inz, typeEl, xx, zz, EI, EA);
