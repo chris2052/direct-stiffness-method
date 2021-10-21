@@ -7,12 +7,14 @@ K = zeros(gDof);
 
 for element = 1:numEl
     n = conn(element,:);
-    DofEl = find(inz(element,:)');
+    
     xa = xx(n(2)) - xx(n(1));
     za = zz(n(2)) - zz(n(1));
     l = sqrt(xa*xa + za*za);
     cosa = xa/l;
     sina = za/l;
+    
+    DofEl = find(inz(element,:)');
     
     ge = typeEl(element);
     
