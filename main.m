@@ -42,11 +42,11 @@ gDof = size(D, 2);
 
 %% load
 loadEl = zeros(numEl, 6);
-loadEl(1,:) = load_f(2.5, 2.5, 25, 5);
-loadEl(2,:) = load_q(0, 10, 4);
-forceNodes = [0];
+loadEl(1,:) = load_f(2.5, 2.5, 25, 5, "ge2b");
+loadEl(2,:) = load_q(0, 10, 4, "ge2a");
+loadNodes = [0, 0, 0, 0, 0, 0, 0, 0, 0]';
 
-loadVec = zeros(gDof, 1);
+F = formForces(gDof, numEl, loadEl, loadNodes, inz);
 
 %% stiffness matrix
 stiffness = formStiffness(gDof, numEl, conn, inz, typeEl, xx, zz, EI, EA);
