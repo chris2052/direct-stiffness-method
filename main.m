@@ -24,9 +24,19 @@ conn = [
     2, 3
     ];
 
-GDof = 3*numNodes;
-
 numEl = size(conn, 1);
+
+%% element type
+typeEl = ['ge2b', 'ge2a'];
+
+%% inzidenz matrix
+inz = [
+    1, 2, 3, 4, 5, 6, 0, 0, 0;
+    0, 0, 0, 1, 2, 3, 4, 5, 6
+    ];
+
+%% deformation vector (global)
+D = [0, 0, 0, 1, 1, 1, 0, 0, 0];
 
 %% load
 loadEl = zeros(numEl, 6);
