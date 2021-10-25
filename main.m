@@ -45,10 +45,10 @@ gDof = size(D, 2);
 loadElLok = zeros(numEl, 6);
 loadElGlob = zeros(numEl, 6);
 [loadElLok(1,:), loadElGlob(1,:)] = load_f(2.5, 2.5, 25, 5, 0.8, 0.6, "ge2b");
-[loadElLok(2,:), loadElGlob(1,:)] = load_q(0, 10, 4, 0, 1, "ge2a");
+[loadElLok(2,:), loadElGlob(2,:)] = load_q(0, 10, 4, 0, 1, "ge2a");
 loadNodes = [0, 0, 0, 0, 0, 0, 0, 0, 0]';
 
-F = formForces(gDof, numEl, loadElLok, loadNodes, inz);
+F = formForces(gDof, numEl, loadElGlob, loadNodes, inz);
 F_red = F(D_r);
 
 %% stiffness matrix
@@ -59,4 +59,5 @@ stiff_red = stiffness(D_r, D_r);
 D_red = stiff_red\F_red;
 D_glob = zeros(gDof,1);
 D_glob(D_r) = D_red;
+
 %% back-calculation
