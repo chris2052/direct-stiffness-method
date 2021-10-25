@@ -13,8 +13,8 @@ for element = 1:numEl
     sina = za/length;
     
     L(element, 1) = length;
-    L(element, 2) = cosa;
-    L(element, 3) = sina;
+    L(element, 2) = sina;
+    L(element, 3) = cosa;
 end
 end
 
