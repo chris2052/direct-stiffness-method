@@ -75,7 +75,7 @@ for element = 1:numEl
 
     end
     
-    K(DofEl, DofEl) = K(DofEl, DofEl) + T * k * T';
+    K(DofEl, DofEl) = K(DofEl, DofEl) + T * (k/EI) * T';
 end
 
 end
