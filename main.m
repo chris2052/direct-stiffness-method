@@ -7,16 +7,16 @@ EI = 20000;
 EA = 100*EI;
 
 %% node coordinates
-CoorNodes = [
+coorNodes = [
     0, -4;
     3, 0;
     7, 0
     ];
 
-numNodes = size(CoorNodes, 1);
+numNodes = size(coorNodes, 1);
 
-xx = CoorNodes(:, 1); 
-zz = CoorNodes(:, 2);
+xx = coorNodes(:, 1); 
+zz = coorNodes(:, 2);
 
 %% connectivity matrix
 conn = [
@@ -61,3 +61,4 @@ D_glob = zeros(gDof,1);
 D_glob(D_r) = D_red;
 
 %% back-calculation
+backCalculation(conn, xx, zz, numEl, loadElLok, EA, EI, D_glob, inz, typeEl);
