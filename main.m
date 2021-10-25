@@ -37,7 +37,7 @@ inz = [
 
 %% deformation vector (global)
 D = [0, 0, 0, 4, 5, 6, 0, 0, 0];
-D_red = find(D);
+D_r = find(D);
 
 gDof = size(D, 2);
 
@@ -49,13 +49,14 @@ loadElGlob = zeros(numEl, 6);
 loadNodes = [0, 0, 0, 0, 0, 0, 0, 0, 0]';
 
 F = formForces(gDof, numEl, loadElLok, loadNodes, inz);
-F_red = F(D_red);
+F_red = F(D_r);
 
 %% stiffness matrix
 stiffness = formStiffness(gDof, numEl, conn, inz, typeEl, xx, zz, EI, EA);
-stiff_red = stiffness(D_red, D_red);
+stiff_red = stiffness(D_r, D_r);
 
 %% calc red system
 D_red = stiff_red\F_red;
-
+D_glob = zeros(gDof,1);
+D_glob(D_r) = D_red;
 %% back-calculation
