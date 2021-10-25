@@ -42,12 +42,13 @@ D_red = find(D);
 gDof = size(D, 2);
 
 %% load
-loadEl = zeros(numEl, 6);
-loadEl(1,:) = load_f(2.5, 2.5, 25, 5, 0.8, 0.6, "ge2b");
-loadEl(2,:) = load_q(0, 10, 4, 0, 1, "ge2a");
+loadElLok = zeros(numEl, 6);
+loadElGlob = zeros(numEl, 6);
+[loadElLok(1,:), loadElGlob(1,:)] = load_f(2.5, 2.5, 25, 5, 0.8, 0.6, "ge2b");
+[loadElLok(2,:), loadElGlob(1,:)] = load_q(0, 10, 4, 0, 1, "ge2a");
 loadNodes = [0, 0, 0, 0, 0, 0, 0, 0, 0]';
 
-F = formForces(gDof, numEl, loadEl, loadNodes, inz);
+F = formForces(gDof, numEl, loadElLok, loadNodes, inz);
 F_red = F(D_red);
 
 %% stiffness matrix
@@ -56,3 +57,5 @@ stiff_red = stiffness(D_red, D_red);
 
 %% calc red system
 D_red = stiff_red\F_red;
+
+%% back-calculation

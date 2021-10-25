@@ -1,4 +1,4 @@
-function loadvec = load_q(pi, pk, l, sina, cosa, ge)
+function [loadvecLok, loadvecGlob] = load_q(pi, pk, l, sina, cosa, ge)
 %LOAD Summary of this function goes here
 %   Detailed explanation goes here
 Ni = 0;
@@ -34,7 +34,8 @@ switch ge
         
 end
 
-loadvec = T * [Ni, Vi, Mi, Nk, Vk, Mk]';
+loadvecLok = [Ni, Vi, Mi, Nk, Vk, Mk]';
+loadvecGlob = T * [Ni, Vi, Mi, Nk, Vk, Mk]';
 
 end
 
