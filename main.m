@@ -53,3 +53,6 @@ F_red = F(D_red);
 %% stiffness matrix
 stiffness = formStiffness(gDof, numEl, conn, inz, typeEl, xx, zz, EI, EA);
 stiff_red = stiffness(D_red, D_red);
+
+%% calc red system
+D_red = stiff_red\F_red;
