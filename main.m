@@ -36,7 +36,8 @@ inz = [
     ];
 
 %% deformation vector (global)
-D = [0, 0, 0, 1, 1, 1, 0, 0, 0];
+D = [0, 0, 0, 4, 5, 6, 0, 0, 0];
+D_red = find(D);
 
 gDof = size(D, 2);
 
@@ -47,6 +48,8 @@ loadEl(2,:) = load_q(0, 10, 4, 0, 1, "ge2a");
 loadNodes = [0, 0, 0, 0, 0, 0, 0, 0, 0]';
 
 F = formForces(gDof, numEl, loadEl, loadNodes, inz);
+F_red = F(D_red);
 
 %% stiffness matrix
 stiffness = formStiffness(gDof, numEl, conn, inz, typeEl, xx, zz, EI, EA);
+stiff_red = stiffness(D_red, D_red);
