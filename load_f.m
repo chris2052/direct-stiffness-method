@@ -1,8 +1,17 @@
-function loadvec = load_f(a, b, f, l, ge)
+function loadvec = load_f(a, b, f, l, sina, cosa, ge)
 %LOAD Summary of this function goes here
 %   Detailed explanation goes here
 Ni = 0;
 Nk = 0;
+
+T = [ 
+    cosa, sina, 0, 0, 0, 0; 
+    -sina, cosa, 0, 0, 0, 0; 
+    0, 0, 1, 0, 0, 0; 
+    0, 0, 0, cosa, sina, 0; 
+    0, 0, 0, -sina, cosa, 0; 
+    0, 0, 0, 0, 0, 1; 
+    ];
 
 switch ge
     case "ge1"
@@ -19,12 +28,12 @@ switch ge
         
     case "ge2b"        
         Mi = 0;
-        Mk = f*a/2 * (1 - (a*a)/(l*l));
+        Mk = -f*a/2 * (1 - (a*a)/(l*l));
         Vi = -f/2 * (2 - 3*a/l + (a*a*a)/(l*l*l));
         Vk = -f*a/(2*l) * (3 - (a*a)/(l*l));
 end
                 
-loadvec = [Ni, Vi, Mi, Nk, Vk, Mk];
+loadvec = T * [Ni, Vi, Mi, Nk, Vk, Mk]';
 
 end
 

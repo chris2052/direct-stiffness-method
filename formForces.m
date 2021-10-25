@@ -9,6 +9,6 @@ for element = 1:numEl
     F(DofEl,1) = F(DofEl,1) + fGlob;
 end
 
-F = F + loadNodes;
+F = -F + loadNodes;
 
 end

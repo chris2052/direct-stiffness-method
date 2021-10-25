@@ -42,8 +42,8 @@ gDof = size(D, 2);
 
 %% load
 loadEl = zeros(numEl, 6);
-loadEl(1,:) = load_f(2.5, 2.5, 25, 5, "ge2b");
-loadEl(2,:) = load_q(0, 10, 4, "ge2a");
+loadEl(1,:) = load_f(2.5, 2.5, 25, 5, 0.8, 0.6, "ge2b");
+loadEl(2,:) = load_q(0, 10, 4, 0, 1, "ge2a");
 loadNodes = [0, 0, 0, 0, 0, 0, 0, 0, 0]';
 
 F = formForces(gDof, numEl, loadEl, loadNodes, inz);
